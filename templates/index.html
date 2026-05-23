@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Password Generator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1>🔐 Password Generator</h1>
+
+        <div class="password-box">
+
+            <input type="text" id="password" readonly placeholder="Your secure password">
+
+            <button onclick="copyPassword()" class="copy-btn">
+                Copy
+            </button>
+
+            <button onclick="clearPassword()" class="clear-btn">
+                Clear
+            </button>
+
+        </div>
+
+        <div class="settings">
+            <label>Password Length: <span id="lengthValue">16</span></label>
+            <input type="range" min="8" max="40" value="16" id="lengthSlider">
+        </div>
+
+        <button class="generate-btn" onclick="generatePassword()">
+            Generate Strong Password
+        </button>
+
+        <div id="strength">Strong Password</div>
+
+        <div class="strength-meter">
+            <div class="strength-fill" id="strength-fill"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
