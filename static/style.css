@@ -10,23 +10,24 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
     overflow:hidden;
     padding:20px;
 }
 
 /* Background Glow */
+
 body::before{
     content:'';
     position:absolute;
-    width:400px;
-    height:400px;
+    width:350px;
+    height:350px;
     background:#2563eb;
     border-radius:50%;
     filter:blur(140px);
-    top:-120px;
-    left:-120px;
-    opacity:0.4;
+    top:-100px;
+    left:-100px;
+    opacity:0.5;
 }
 
 body::after{
@@ -37,36 +38,40 @@ body::after{
     background:#00c853;
     border-radius:50%;
     filter:blur(140px);
-    bottom:-100px;
-    right:-100px;
+    bottom:-120px;
+    right:-120px;
     opacity:0.3;
 }
 
 .container{
     width:100%;
-    max-width:520px;
+    max-width:540px;
     position:relative;
     z-index:10;
 }
 
 .card{
     background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,0.1);
-    backdrop-filter:blur(18px);
     border-radius:28px;
     padding:35px;
-    box-shadow:
-        0 8px 32px rgba(0,0,0,0.35),
-        inset 0 1px 1px rgba(255,255,255,0.1);
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
 }
 
 h1{
     color:white;
     text-align:center;
-    font-size:2rem;
-    margin-bottom:30px;
+    font-size:2.1rem;
     font-weight:700;
-    letter-spacing:1px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#cbd5e1;
+    text-align:center;
+    margin-bottom:30px;
+    font-size:0.95rem;
 }
 
 .password-box{
@@ -82,102 +87,19 @@ h1{
     outline:none;
     border-radius:16px;
     padding:0 20px;
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.08);
     color:white;
-    font-size:1.1rem;
-    letter-spacing:1px;
-    transition:0.3s;
-}
-
-.password-box input:focus{
-    border:1px solid #3b82f6;
-    box-shadow:0 0 15px rgba(59,130,246,0.5);
-}
-
-.password-box button{
-    border:none;
-    outline:none;
-    padding:0 22px;
-    border-radius:16px;
-    background:linear-gradient(135deg,#00c853,#00e676);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.password-box button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(0,200,83,0.4);
-}
-
-.settings{
-    margin-bottom:25px;
-}
-
-.settings label{
-    color:white;
-    display:block;
-    margin-bottom:15px;
     font-size:1rem;
-    font-weight:500;
+    letter-spacing:1px;
 }
 
-.settings input[type="range"]{
-    width:100%;
-    cursor:pointer;
+.password-box input::placeholder{
+    color:#94a3b8;
 }
-
-.generate-btn{
-    width:100%;
-    height:60px;
-    border:none;
-    border-radius:18px;
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-    color:white;
-    font-size:1.1rem;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.3s;
-    letter-spacing:0.5px;
-}
-
-.generate-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(37,99,235,0.45);
-}
-
-#strength{
-    margin-top:25px;
-    text-align:center;
-    font-size:1.1rem;
-    font-weight:700;
-    color:#00e676;
-}
-
-/* Strength Meter */
-
-.strength-meter{
-    width:100%;
-    height:12px;
-    background:rgba(255,255,255,0.1);
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:15px;
-}
-
-.strength-fill{
-    height:100%;
-    width:0%;
-    border-radius:20px;
-    transition:0.4s;
-    background:red;
-}
-/* Copy Button */
 
 .copy-btn{
     border:none;
-    padding:0 22px;
+    padding:0 20px;
     border-radius:16px;
     background:linear-gradient(135deg,#00c853,#00e676);
     color:white;
@@ -191,11 +113,9 @@ h1{
     box-shadow:0 10px 20px rgba(0,200,83,0.4);
 }
 
-/* Clear Button */
-
 .clear-btn{
     border:none;
-    padding:0 22px;
+    padding:0 20px;
     border-radius:16px;
     background:linear-gradient(135deg,#ef4444,#dc2626);
     color:white;
@@ -208,34 +128,114 @@ h1{
     transform:translateY(-2px);
     box-shadow:0 10px 20px rgba(239,68,68,0.4);
 }
-/* Responsive */
 
-@media(max-width:600px){
+.settings{
+    margin-bottom:30px;
+}
 
-    .card{
-        padding:25px;
-    }
+.length-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+    color:white;
+    font-weight:500;
+}
 
-    h1{
-        font-size:1.7rem;
-    }
+input[type="range"]{
+    width:100%;
+    cursor:pointer;
+}
+
+.options{
+    margin-bottom:30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.options label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    background:rgba(255,255,255,0.06);
+    padding:14px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:0.95rem;
+}
+
+.options label:hover{
+    background:rgba(255,255,255,0.12);
+}
+
+.options input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    accent-color:#3b82f6;
+}
+
+.generate-btn{
+    width:100%;
+    height:60px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:white;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.generate-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px rgba(37,99,235,0.4);
+}
+
+#strength{
+    margin-top:25px;
+    text-align:center;
+    font-size:1rem;
+    font-weight:700;
+    color:#00e676;
+}
+
+.strength-meter{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,0.1);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.strength-fill{
+    width:100%;
+    height:100%;
+    background:#00e676;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+@media(max-width:700px){
 
     .password-box{
         flex-direction:column;
     }
 
-    .password-box button{
+    .copy-btn,
+    .clear-btn{
         height:55px;
-        width:100%;
     }
 
-    .password-box input{
-        height:55px;
-        font-size:1rem;
+    .options{
+        grid-template-columns:1fr;
     }
 
-    .generate-btn{
-        height:55px;
-        font-size:1rem;
+    .card{
+        padding:25px;
     }
+
 }

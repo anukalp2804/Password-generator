@@ -1,27 +1,44 @@
 from flask import Flask, render_template, request, jsonify
-import random
-import string
 import secrets
+import string
+import random
 
 app = Flask(__name__)
 
 
-def generate_strong_password(length):
-    lowercase = string.ascii_lowercase
-    uppercase = string.ascii_uppercase
-    numbers = string.digits
-    symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?/"
+def generate_strong_password(
+        length,
+        uppercase,
+        lowercase,
+        numbers,
+        symbols
+):
 
-    all_chars = lowercase + uppercase + numbers + symbols
+    upper = string.ascii_uppercase
+    lower = string.ascii_lowercase
+    nums = string.digits
+    syms = "!@#$%^&*()_+-=[]{}|;:,.<>?/"
 
-    password = [
-        secrets.choice(lowercase),
-        secrets.choice(uppercase),
-        secrets.choice(numbers),
-        secrets.choice(symbols)
-    ]
+    all_chars = ""
+    password = []
 
-    for _ in range(length - 4):
+    if uppercase:
+        all_chars += upper
+        password.append(secrets.choice(upper))
+
+    if lowercase:
+        all_chars += lower
+        password.append(secrets.choice(lower))
+
+    if numbers:
+        all_chars += nums
+        password.append(secrets.choice(nums))
+
+    if symbols:
+        all_chars += syms
+        password.append(secrets.choice(syms))
+
+    for _ in range(length - len(password)):
         password.append(secrets.choice(all_chars))
 
     random.shuffle(password)
@@ -36,13 +53,26 @@ def home():
 
 @app.route('/generate', methods=['POST'])
 def generate():
+
     data = request.get_json()
+
     length = int(data.get('length', 16))
 
-    password = generate_strong_password(length)
+    uppercase = data.get('uppercase', True)
+    lowercase = data.get('lowercase', True)
+    numbers = data.get('numbers', True)
+    symbols = data.get('symbols', True)
+
+    password = generate_strong_password(
+        length,
+        uppercase,
+        lowercase,
+        numbers,
+        symbols
+    )
 
     return jsonify({
-        'password': password
+        "password": password
     })
 
 
