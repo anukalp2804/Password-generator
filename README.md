@@ -38,6 +38,7 @@ password-generator/
 │
 └── static/
     ├── style.css
+    ├── screenshort.png
     └── script.js
 ```
 
@@ -84,7 +85,3 @@ http://127.0.0.1:5000
 ![App Screenshot](static/screenshot.png)
 
 ---
-
-## 👨‍💻 Author
-
-Made with by Anukalp Pandey
